@@ -22,5 +22,11 @@ pipeline
                 sh 'npm run build'
             }
         }
+        stage('Build Image')
+        {
+            steps{
+                sh 'docker build -t vishal-node:1.0 .'
+            }
+        }
     }
 }

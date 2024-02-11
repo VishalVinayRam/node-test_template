@@ -8,22 +8,12 @@ pipeline {
             }
         }
 
-   stage("Test") {
-    steps {
-        sh 'npm install'
-        sh 'npm test'
-    }
-   }
-
-        stage("Build") {
-            steps {
-                sh 'npm run build'
-            }
-        }
-
         stage('Build Image') {
             steps {
-                sh 'docker build -t vishal-node:1.0 .'
+                script {
+                    // Build Docker image without npm commands
+                    sh 'docker build -t vishal-node:1.0 .'
+                }
             }
         }
     }

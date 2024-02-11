@@ -1,30 +1,28 @@
-pipeline
-{
-    agent:any
-    stages{
-        stage('checkout')
-        {
-            steps{
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
                 checkout scm
             }
         }
-        stage("Test")
-        {
-            steps{
+
+        stage("Test") {
+            steps {
                 sh 'sudo npm install'
                 sh 'npm test'
             }
         }
-        stage("Build")
-        {
-            steps
-            {
+
+        stage("Build") {
+            steps {
                 sh 'npm run build'
             }
         }
-        stage('Build Image')
-        {
-            steps{
+
+        stage('Build Image') {
+            steps {
                 sh 'docker build -t vishal-node:1.0 .'
             }
         }
